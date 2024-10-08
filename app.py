@@ -62,36 +62,37 @@ if pro == "Tables":
         st.text(table_result)
 
 # Option 2: Forward Counting
-elif pro == "Forward Counting":
-    st.markdown("<div class='section-header'>Forward Counting</div>", unsafe_allow_html=True)
-    st.markdown("<div class='instructions'>Enter the start and end numbers for forward counting.</div>", unsafe_allow_html=True)
-    
+if pro == "Forward Counting":
+    st.subheader("Forward Counting")
     f_start_count = st.number_input("Enter Start Number:", min_value=1, step=1)
     f_end_count = st.number_input("Enter End Number:", min_value=f_start_count, step=1)
-    
+
     if st.button("Generate Forward Counting"):
         st.write(f"### Forward Counting from {f_start_count} to {f_end_count}")
-        count_result = ""
+        
+        # Display in chunks of 10 per line
+        result = ""
         for i in range(f_start_count, f_end_count + 1):
-            count_result += f"{i} "
-        st.text(count_result)
+            result += f"{i} "
+            if (i - f_start_count + 1) % 10 == 0:  # Insert line break after every 10 numbers
+                result += "\n"
+        st.text(result)
 
 # Option 3: Backward Counting
 elif pro == "Backward Counting":
-    st.markdown("<div class='section-header'>Backward Counting</div>", unsafe_allow_html=True)
-    st.markdown("<div class='instructions'>Enter the start and end numbers for backward counting.</div>", unsafe_allow_html=True)
-    
+    st.subheader("Backward Counting")
     start_counting = st.number_input("Enter Start Number:", min_value=1, step=1)
     end_counting = st.number_input("Enter End Number:", min_value=1, step=1)
-    
+
     if start_counting >= end_counting and st.button("Generate Backward Counting"):
         st.write(f"### Backward Counting from {start_counting} to {end_counting}")
-        count_result = ""
+        
+        # Display in chunks of 10 per line
+        result = ""
         for i in range(start_counting, end_counting - 1, -1):
-            count_result += f"{i} "
-        st.text(count_result)
+            result += f"{i} "
+            if (start_counting - i + 1) % 10 == 0:  # Insert line break after every 10 numbers
+                result += "\n"
+        st.text(result)
     else:
         st.warning("Start number should be greater than or equal to the end number.")
-
-# Footer for branding
-st.markdown("<div class='footer'>Developed by: Your Name | Kids Math Solution © 2024</div>", unsafe_allow_html=True)
