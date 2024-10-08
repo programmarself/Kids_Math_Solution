@@ -96,3 +96,5 @@ elif pro == "Backward Counting":
         st.text(result)
     else:
         st.warning("Start number should be greater than or equal to the end number.")
+# Footer for branding
+st.markdown("<div class='footer'>Developed by: IRFAN ULLAH KHAN | Kids Math Solution © 2024</div>", unsafe_allow_html=True)
